@@ -26,7 +26,23 @@
 </head>
 <body>
     <div class="notepad">
-        <textarea placeholder="Start typing your notes here..."></textarea>
+        <textarea id="noteTextArea" placeholder="Start typing your notes here..."></textarea>
     </div>
+
+    <script>
+        // Get the textarea element
+        const noteTextArea = document.getElementById('noteTextArea');
+
+        // Load the saved note from localStorage if it exists
+        const savedNote = localStorage.getItem('savedNote');
+        if (savedNote) {
+            noteTextArea.value = savedNote;
+        }
+
+        // Add an event listener to save the note to localStorage when it's changed
+        noteTextArea.addEventListener('input', () => {
+            localStorage.setItem('savedNote', noteTextArea.value);
+        });
+    </script>
 </body>
 </html>
